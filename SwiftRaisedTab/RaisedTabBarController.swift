@@ -10,6 +10,8 @@ import UIKit
 
 open class RaisedTabBarController: UITabBarController {
     
+    var raisedButton:UIButton?
+    
     override open func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -24,35 +26,35 @@ open class RaisedTabBarController: UITabBarController {
     
     open func addRaisedButton(_ buttonImage: UIImage?, highlightImage: UIImage?, offset:CGFloat? = nil) {
         if let buttonImage = buttonImage {
-            let button = UIButton(type: UIButtonType.custom)
-            button.autoresizingMask = [UIViewAutoresizing.flexibleRightMargin, UIViewAutoresizing.flexibleLeftMargin, UIViewAutoresizing.flexibleBottomMargin, UIViewAutoresizing.flexibleTopMargin]
+            self.raisedButton = UIButton(type: UIButtonType.custom)
+            self.raisedButton!.autoresizingMask = [UIViewAutoresizing.flexibleRightMargin, UIViewAutoresizing.flexibleLeftMargin, UIViewAutoresizing.flexibleBottomMargin, UIViewAutoresizing.flexibleTopMargin]
             
-            button.frame = CGRect(x: 0.0, y: 0.0, width: buttonImage.size.width, height: buttonImage.size.height)
-            button.setBackgroundImage(buttonImage, for: UIControlState())
-            button.setBackgroundImage(highlightImage, for: UIControlState.highlighted)
+            self.raisedButton!.frame = CGRect(x: 0.0, y: 0.0, width: buttonImage.size.width, height: buttonImage.size.height)
+            self.raisedButton!.setBackgroundImage(buttonImage, for: UIControlState())
+            self.raisedButton!.setBackgroundImage(highlightImage, for: UIControlState.highlighted)
             
             let heightDifference = buttonImage.size.height - self.tabBar.frame.size.height
             
             if (heightDifference < 0) {
-                button.center = self.tabBar.center
+                self.raisedButton!.center = self.tabBar.center
             }
             else {
                 var center = self.tabBar.center
                 center.y -= heightDifference / 2.0
                 
-                button.center = center
+                self.raisedButton!.center = center
             }
             
             if offset != nil
             {
                 //Add offset
-                var center = button.center
+                var center = self.raisedButton!.center
                 center.y = center.y + offset!
-                button.center = center
+                self.raisedButton!.center = center
             }
             
-            button.addTarget(self, action: #selector(RaisedTabBarController.onRaisedButton(_:)), for: UIControlEvents.touchUpInside)
-            self.view.addSubview(button)
+            self.raisedButton!.addTarget(self, action: #selector(RaisedTabBarController.onRaisedButton(_:)), for: UIControlEvents.touchUpInside)
+            self.view.addSubview(self.raisedButton!)
         }
     }
     
