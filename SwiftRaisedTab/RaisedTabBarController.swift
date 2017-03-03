@@ -10,7 +10,7 @@ import UIKit
 
 open class RaisedTabBarController: UITabBarController {
     
-    var raisedButton:UIButton?
+    open var raisedButton:UIButton?
     
     override open func viewDidLoad() {
         super.viewDidLoad()
