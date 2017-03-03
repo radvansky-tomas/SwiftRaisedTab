@@ -24,6 +24,20 @@ open class RaisedTabBarController: UITabBarController {
         self.viewControllers?.insert(vc, at: atIndex)
     }
     
+    open func hideRaisedTabBar()
+    {
+        self.tabBar.isHidden = true
+        raisedButton?.isHidden = true
+        raisedButton?.isUserInteractionEnabled = false
+    }
+    
+    open func showRaisedTabBar()
+    {
+        self.tabBar.isHidden = false
+        raisedButton?.isHidden = false
+        raisedButton?.isUserInteractionEnabled = true
+    }
+    
     open func addRaisedButton(_ buttonImage: UIImage?, highlightImage: UIImage?, offset:CGFloat? = nil) {
         if let buttonImage = buttonImage {
             self.raisedButton = UIButton(type: UIButtonType.custom)
